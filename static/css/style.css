@@ -1,0 +1,7 @@
+.jumbotron{
+    background-image:url("/static/img/sonic.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 500px;
+
+}
