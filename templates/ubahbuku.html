@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <ul>
+                <li><a href="/">Tampilan Buku</a></li>
+            </ul>
+            <h3>Ubah Buku : {{ buku.judul }}</h3>
+
+            {% for message in messages %}
+            <div class="alert alert-success">{{message}}</div>
+            {% endfor %}
+
+            <form action="{% url 'ubah_buku' buku.id %}" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-primary">Simpan</button>
+                <a href="/" class="btn btn-danger">Kembali</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
