@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <br>
+            <div class="card-header" style="border-radius:0.5em;text-align: center;">
+                Sign Up
+            </div>
+            <div class="card-body">
+                {% for message in messages %}
+                {% if message.tags == 'succes' %}
+                <div class="alert alert-succes">{{message}}</div>
+                {% else %}
+                <div class="alert alert-denger">{{message}}</div>
+                {% endif %}
+                {% endfor %}
+                <form action="{% url 'signup' %}" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Buat</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

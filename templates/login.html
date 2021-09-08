@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <a href="{% url 'signup' %}"> Buat User</a>
+        <div class="col-md-4">
+            <div class="">
+                {% for message in messages %}
+                {% if message.tags == 'succes' %}
+                <div class="alert alert-succes">{{message}}</div>
+                {% else %}
+                <div class="alert alert-denger">{{message}}</div>
+                {% endif %}
+                {% endfor %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">Username : </label>
+                        <input type="text" class="form-control" name="username" id="username"
+                            aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="password"> Password : </label>
+                        <input type="password" class="form-control" name="password" id="password">
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary"> Login</button>
+
+                </form>
+                <!-- <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button class="btn btn-primary"> Masuk </button>
+                    </form>
+                </div> -->
+            </div>
+            <br>
+
+            <br>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+    <h3>Halo Selamat Datang {{user}}</h3>
+    <br>
+    <br>
+    <a href="{% url 'logout' %}" class="btn btn-primary" type="submit">Logout</a>
+    {% endif %}
+
+
+
+</div>
+
+{% endblock content %}

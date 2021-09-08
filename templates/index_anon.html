@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <br>
+    <br>
+    <a href="{% url 'login' %}" class="btn btn-primary"> Login</a>
+    <br>
+    <br>
+    <h3>Halo Selamat Datang {{user}}</h3>
+</div>
+{% endblock content %}

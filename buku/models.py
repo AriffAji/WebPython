@@ -15,7 +15,7 @@ class Buku(models.Model):
     jumlah = models.IntegerField(null=True)
     Published = models.DateTimeField(auto_now_add=True)
     kelompok_id = models.ForeignKey(Kelompok , on_delete=models.CASCADE, null=True)
-   
+    cover = models.ImageField(upload_to='cover/', null=True)
 
     def __str__(self):
         return self.judul  

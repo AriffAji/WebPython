@@ -6,9 +6,10 @@
     <br>
     <h3>Halo : {{user}}</h3>
     <br>
-    <ul>
+    <!-- <ul>
         <li><a href="{% url 'tambah_buku' %}">Isi Form</a></li>
-    </ul>
+    </ul> -->
+    <a href=" {% url 'tambah_buku' %}" class="btn btn-primary">Tambah Buku</a>
     <h1>
         <center>{{judul|upper}}</center>
     </h1>
@@ -23,6 +24,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>Cover</th>
                         <th>Judul</th>
                         <th>Penulis</th>
                         <th>Penerbit</th>
@@ -34,6 +36,11 @@
                 <tbody>
                     {% for buku in bukutok %}
                     <tr>
+                        <td>
+                            {% if buku.cover %}
+                            <img src="{{ buku.cover.url }}" width="90px" alt="">
+                            {% endif %}
+                        </td>
                         <td><a href="{% url 'ubah_buku' buku.id %}">{{buku.judul}}</a></td>
                         <td>{{buku.penulis}}</td>
                         <td>{{buku.penerbit}}</td>
@@ -71,6 +78,8 @@
             </table>
         </div>
     </div>
+    <button class="btn btn-warning">
+        <a href="{% url 'logout' %}">LOGOUT</a></button>
 </div>
 
 {% endblock content %}

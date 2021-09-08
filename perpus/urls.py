@@ -13,21 +13,31 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
-from django.contrib.auth.views import loginView
-from django.http import HttpResponse
+from django.conf import settings
 from buku.views import *
-
+from django.conf.urls.static import static
+from django.contrib import admin
+# from django.contrib.auth.views import loginView
+from django.http import HttpResponse
+from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', buku, name='buku'),
+    path('', index, name='index'),
+    path('signup/', signup, name='signup'),
+    # path('login/', login, name='login'),
+    path('logout/', logOut, name='logout'),
+    path('buku/', buku, name='buku'),
     path('penerbit/', penerbit, name='penerbit'),
     path('tambahbuku/', tambah_buku),
     path('tambah_buku/', tambah_buku, name='tambah_buku'),
     path('buku/ubah/<int:id_buku>/', ubah_buku, name='ubah_buku'),
-    path('buku/hapus/<int:id_buku>/', hapus_buku, name='hapus_buku')
-    path('masuk/', loginView.as_view(), name='masuk')
+    path('buku/hapus/<int:id_buku>/', hapus_buku, name='hapus_buku'),
+    # path('export/xls/', export_xls, name='export_xls'),
+    
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
 

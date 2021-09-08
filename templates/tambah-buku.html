@@ -7,10 +7,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <ul>
+            <!-- <ul>
                 <li><a href="{% url 'buku' %}">Tampilan Buku</a></li>
-            </ul>
-            <form action="/tambah_buku/" method="post">
+            </ul> -->
+            <form action="/tambah_buku/" method="post" enctype="multipart/form-data">
+                {% for message in messages %}
+                <div class="alert alert-success">{{message}}</div>
+                {% endfor %}
                 {% csrf_token %}
                 {{form.as_p}}
                 <button class="btn btn-primary">Simpan</button>
